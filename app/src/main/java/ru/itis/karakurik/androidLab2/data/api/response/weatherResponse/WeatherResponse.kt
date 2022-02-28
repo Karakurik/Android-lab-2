@@ -1,11 +1,15 @@
-package ru.itis.karakurik.androidLab2.data.api.response
+package ru.itis.karakurik.androidLab2.data.api.response.weatherResponse
 
 
 import com.google.gson.annotations.SerializedName
 
-data class WeatherResponse (
+data class WeatherResponse(
+    @SerializedName("base")
+    val base: String,
     @SerializedName("clouds")
     val clouds: Clouds,
+    @SerializedName("cod")
+    val cod: Int,
     @SerializedName("coord")
     val coord: Coord,
     @SerializedName("dt")
@@ -16,12 +20,12 @@ data class WeatherResponse (
     val main: Main,
     @SerializedName("name")
     val name: String,
-    @SerializedName("rain")
-    val rain: Any,
-    @SerializedName("snow")
-    val snow: Any,
     @SerializedName("sys")
     val sys: Sys,
+    @SerializedName("timezone")
+    val timezone: Int,
+    @SerializedName("visibility")
+    val visibility: Int,
     @SerializedName("weather")
     val weather: List<Weather>,
     @SerializedName("wind")

@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2
+package ru.itis.karakurik.androidLab2.myTestsApi
 
 import kotlinx.coroutines.runBlocking
 import ru.itis.karakurik.androidLab2.data.WeatherRepository
@@ -13,13 +13,13 @@ fun main() {
     val repository = WeatherRepository()
 
     runBlocking {
-        val weatherResponse = repository.getWeather("Kazan")
-        val lat = weatherResponse.coord.lat
-        val lon = weatherResponse.coord.lon
+        val weather = repository.getWeather("Kazan")
+        val lat = weather.lat
+        val lon = weather.lon
 
-        val weatherCitiesResponse = repository.getWeatherCities(lat, lon, 10)
-        for (wR in weatherCitiesResponse.list) {
-            println(wR.name + " " + wR.weather[0].description)
+        val weatherCities = repository.getCities(lat, lon, 10)
+        for (wC in weatherCities) {
+            println(wC.name + " " + wC.temp)
         }
     }
 }

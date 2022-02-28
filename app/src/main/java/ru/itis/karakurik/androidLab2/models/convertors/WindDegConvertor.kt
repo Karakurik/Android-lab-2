@@ -4,7 +4,6 @@ import androidx.room.TypeConverter
 import ru.itis.karakurik.androidLab2.models.WindDeg
 
 object WindDegConvertor {
-    @TypeConverter
     fun convertWindDeg(deg: Int): WindDeg {
         return when ((deg / 45 + 2* (deg%45) / 45) * 45 % 360) {
             0 -> WindDeg.N

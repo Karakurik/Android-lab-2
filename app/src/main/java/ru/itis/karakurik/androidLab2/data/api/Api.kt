@@ -2,8 +2,8 @@ package ru.itis.karakurik.androidLab2.data.api
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.itis.karakurik.androidLab2.data.api.response.WeatherCitiesResponse
-import ru.itis.karakurik.androidLab2.data.api.response.WeatherResponse
+import ru.itis.karakurik.androidLab2.data.api.response.citiesResponse.CitiesResponse
+import ru.itis.karakurik.androidLab2.data.api.response.weatherResponse.WeatherResponse
 
 interface Api {
     @GET("weather")
@@ -14,5 +14,5 @@ interface Api {
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
         @Query("cnt") cnt: Int
-    ) : WeatherCitiesResponse
+    ) : CitiesResponse
 }

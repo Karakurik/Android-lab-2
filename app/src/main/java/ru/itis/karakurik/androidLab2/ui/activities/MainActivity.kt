@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import ru.itis.karakurik.androidLab2.data.WeatherRepository
 import ru.itis.karakurik.androidLab2.databinding.ActivityMainBinding

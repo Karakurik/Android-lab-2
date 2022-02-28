@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorGray">#B2C1D0</color>
+
+    <color name="temp_less_minus20">#00008B</color>
+    <color name="temp_minus20_minus10">#0000EE</color>
+    <color name="temp_minus10_0">#63B8FF</color>
+    <color name="temp_0_10">#00FF7F</color>
+    <color name="temp_10_20">#00CD66</color>
+    <color name="temp_20_30">#FFFF00</color>
+    <color name="temp_more20">#FF3030</color>
+
 </resources>

@@ -16,6 +16,7 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/sv_search"
             android:layout_width="match_parent"
+            app:queryHint="@string/query_hint"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -23,12 +24,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
         android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/list_item_city"
-        app:layout_constraintTop_toBottomOf="@id/til_search" />
+        app:layout_constraintTop_toBottomOf="@id/til_search"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
