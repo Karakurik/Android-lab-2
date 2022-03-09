@@ -17,5 +17,6 @@
     <color name="temp_10_20">#00CD66</color>
     <color name="temp_20_30">#FFFF00</color>
     <color name="temp_more20">#FF3030</color>
+    <color name="weatherColor">#00BCD4</color>
 
 </resources>

@@ -21,7 +21,7 @@ import ru.itis.karakurik.androidLab2.domain.usecase.GetWeathersUseCase
 import ru.itis.karakurik.androidLab2.presentation.fragments.list.recycler.ListRecyclerAdapter
 import timber.log.Timber
 
-private const val COUNT_OF_CITIES_IN_LIST = 10
+private const val COUNT_OF_CITIES_IN_LIST = 20
 private const val HARDCODE_LAT = 55.7887
 private const val HARDCODE_LON = 49.1221
 
