@@ -9,8 +9,11 @@ interface Api {
     @GET("weather")
     suspend fun getWeather(@Query("q") city: String): WeatherResponse
 
+    @GET("weather")
+    suspend fun getWeather(@Query("id") id: Int): WeatherResponse
+
     @GET("find")
-    suspend fun getWeatherCities(
+    suspend fun getWeathers(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
         @Query("cnt") cnt: Int

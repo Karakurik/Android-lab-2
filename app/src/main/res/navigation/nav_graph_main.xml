@@ -3,29 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/searchFragment">
+    app:startDestination="@id/fragment_search">
 
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="ru.itis.karakurik.androidLab2.ui.fragments.list.SearchFragment"
+        android:id="@+id/fragment_search"
+        android:name="ru.itis.karakurik.androidLab2.presentation.fragments.list.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_searchFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
 
-        <argument
-            android:name="cityId"
-            app:argType="long"
-            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_fragment_search_to_fragment_details"
+            app:destination="@id/fragment_details" />
     </fragment>
     <fragment
-        android:id="@+id/detailsFragment"
-        android:name="ru.itis.karakurik.androidLab2.ui.fragments.DetailsFragment"
+        android:id="@+id/fragment_details"
+        android:name="ru.itis.karakurik.androidLab2.presentation.fragments.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
+
         <action
-            android:id="@+id/action_detailsFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            android:id="@+id/action_fragment_details_to_fragment_search"
+            app:destination="@id/fragment_search" />
     </fragment>
 </navigation>

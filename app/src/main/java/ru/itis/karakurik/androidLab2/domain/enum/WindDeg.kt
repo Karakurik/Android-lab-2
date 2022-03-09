@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2.models
+package ru.itis.karakurik.androidLab2.domain.enum
 enum class WindDeg (
     val deg: Int
 ) {

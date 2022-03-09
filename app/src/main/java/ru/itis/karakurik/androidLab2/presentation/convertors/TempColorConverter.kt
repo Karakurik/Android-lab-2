@@ -1,6 +1,5 @@
-package ru.itis.karakurik.androidLab2.models.convertors
+package ru.itis.karakurik.androidLab2.presentation.convertors
 
-import android.graphics.Color
 import ru.itis.karakurik.androidLab2.R
 
 object TempColorConverter {

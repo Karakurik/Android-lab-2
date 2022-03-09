@@ -1,10 +1,9 @@
-package ru.itis.karakurik.androidLab2.models.convertors
+package ru.itis.karakurik.androidLab2.data.api.mapper
 
-import androidx.room.TypeConverter
-import ru.itis.karakurik.androidLab2.models.WindDeg
+import ru.itis.karakurik.androidLab2.domain.enum.WindDeg
 
-object WindDegConvertor {
-    fun convertWindDeg(deg: Int): WindDeg {
+class WindDegMapper {
+    fun map(deg: Int) : WindDeg {
         return when ((deg / 45 + 2* (deg%45) / 45) * 45 % 360) {
             0 -> WindDeg.N
             45 -> WindDeg.NE
