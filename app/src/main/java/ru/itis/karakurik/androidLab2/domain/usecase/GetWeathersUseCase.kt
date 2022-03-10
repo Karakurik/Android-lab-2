@@ -12,7 +12,7 @@ class GetWeathersUseCase(
 ) {
     suspend operator fun invoke(lat: Double, lon: Double, cnt: Int): MutableList<Weather> {
         return withContext(dispatcher) {
-            weatherRepository.getWeathers(lat, lon, cnt)
+            weatherRepository.getWeatherList(lat, lon, cnt)
         }
     }
 }

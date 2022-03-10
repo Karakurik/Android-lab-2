@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -58,9 +59,10 @@ dependencies {
     //Coil
     implementation "io.coil-kt:coil:1.1.1"
 
-    def nav_version = "2.3.5"
-    implementation "androidx.navigation:navigation-fragment:2.4.1"
-    implementation "androidx.navigation:navigation-ui:2.4.1"
+    def navigation = "2.4.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
+    implementation "androidx.navigation:navigation-runtime-ktx:$navigation"
 
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"

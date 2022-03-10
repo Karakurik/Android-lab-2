@@ -17,7 +17,7 @@ class WeatherRepositoryImpl(
         return weatherMapper.map(api.getWeather(id))
     }
 
-    override suspend fun getWeathers(lat: Double, lon: Double, cnt: Int): MutableList<Weather> {
+    override suspend fun getWeatherList(lat: Double, lon: Double, cnt: Int): MutableList<Weather> {
         val citiesResponse = api.getWeathers(lat, lon, cnt)
         val list = ArrayList<Weather>(cnt)
         for (city in citiesResponse.list) {

@@ -44,7 +44,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         binding = FragmentDetailsBinding.bind(view)
 
         arguments?.let {
-            cityId = it.getInt("ID")
+            cityId = it.getInt("city_id")
         }
 
         lifecycleScope.launch {

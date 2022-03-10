@@ -1,7 +1,6 @@
 package ru.itis.karakurik.androidLab2.presentation.fragments.list
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -48,7 +46,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         GetWeatherUseCase(DiContainer.weatherRepository, Dispatchers.Default)
     }
 
-    private val getWeathersUseCase: GetWeathersUseCase by lazy {
+    private val getWeatherListUseCase: GetWeathersUseCase by lazy {
         GetWeathersUseCase(DiContainer.weatherRepository, Dispatchers.Default)
     }
 
@@ -109,11 +107,15 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                             Snackbar.make(it.root, "Местоположение найдено", Snackbar.LENGTH_LONG)
                                 .show()
                         }*/
-                        getWeathers(userLat, userLon, COUNT_OF_CITIES_IN_LIST)
+                        getWeatherList(userLat, userLon, COUNT_OF_CITIES_IN_LIST)
                     } else {
                         Timber.d("Location not found")
                         binding?.let { it ->
-                            Snackbar.make(it.root, "Местоположение не найдено\nВключите геолокацию", Snackbar.LENGTH_LONG)
+                            Snackbar.make(
+                                it.root,
+                                "Местоположение не найдено\nВключите геолокацию",
+                                Snackbar.LENGTH_LONG
+                            )
                                 .show()
                         }
                     }
@@ -152,15 +154,15 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             override fun onQueryTextSubmit(query: String): Boolean {
                 lifecycleScope.launch {
                     Timber.d("Pressed query button")
-                    try {
-                        getWeather(query)
-                    } catch (ex: Exception) {
+                    getCityId(query)?.let {
+                        showDetailsFragment(it)
+                    } ?: run {
                         Toast.makeText(
                             context,
-                            "Не удалось найти акой город",
+                            "Не удалось найти такой город",
                             Toast.LENGTH_LONG
                         ).show()
-                        Timber.e(ex.message.toString())
+                        Timber.d("Do not found city")
                     }
                 }
                 return false
@@ -173,10 +175,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         })
     }
 
-    private suspend fun getWeather(city: String) {
-        val weather = getWeatherUseCase(city)
-        showDetailsFragment(weather.id)
-    }
+    private suspend fun getCityId(
+        city: String
+    ) = kotlin.runCatching {
+        getWeatherUseCase(city).id
+    }.getOrNull()
 
 
     private fun initRecyclerView() {
@@ -187,15 +190,15 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             adapter = listRecyclerAdapter
         }
 
-        getWeathers(userLat, userLon, COUNT_OF_CITIES_IN_LIST)
+        getWeatherList(userLat, userLon, COUNT_OF_CITIES_IN_LIST)
     }
 
-    private fun getWeathers(lat: Double, lon: Double, cnt: Int) {
+    private fun getWeatherList(lat: Double, lon: Double, cnt: Int) {
         Timber.d("Get weathers list")
         lifecycleScope.launch {
             try {
-                val weathers = getWeathersUseCase(lat, lon, cnt)
-                listRecyclerAdapter?.submitList(weathers)
+                val weatherList = getWeatherListUseCase(lat, lon, cnt)
+                listRecyclerAdapter?.submitList(weatherList)
                 binding?.rvSearch?.layoutManager?.scrollToPosition(0)
             } catch (ex: Exception) {
                 Timber.e("Error due to get weathers")
@@ -209,10 +212,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
     }
 
-    private fun showDetailsFragment(id: Int) {
-        val bundle = bundleOf(
-            "ID" to id
+    private fun showDetailsFragment(id: Int) = findNavController().navigate(
+        SearchFragmentDirections.actionFragmentSearchToFragmentDetails(
+            id
         )
-        findNavController().navigate(R.id.action_fragment_search_to_fragment_details, bundle)
-    }
+    )
 }
