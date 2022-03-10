@@ -53,9 +53,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             binding?.run {
                 weather?.let {
                     tvCity.text = it.name
-                    tvTemp.text = it.temp.toString() + "°C"
-                    tvHumidityValue.text = it.humidity.toString() + "%"
-                    tvWindDegValue.text = it.windDeg.toString()
+                    tvTemp.text = "${it.temp}°C"
+                    tvTempMin.text = "${it.tempMin}°C"
+                    tvTempMax.text = "${it.tempMax}°C"
+                    tvWindDeg.text = it.windDeg.toString()
+                    tvWindSpeed.text = "${it.windSpeed}km/h"
+                    tvHumidity.text = "${it.humidity}%"
+                    tvPressure.text = "${it.pressure}P"
                     ivAir.context.imageLoader.execute(
                         ImageRequest.Builder(ivAir.context)
                             .data(it.iconUrl)

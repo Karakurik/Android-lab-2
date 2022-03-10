@@ -18,6 +18,8 @@ class WeatherMapper(
         tempMax = weatherResponse.main.tempMax,
         humidity = weatherResponse.main.humidity,
         windDeg = windDegMapper.map(weatherResponse.wind.deg),
+        windSpeed = weatherResponse.wind.speed,
+        pressure = weatherResponse.main.pressure,
         iconUrl = weatherIconUrlMapper.map(weatherResponse.weather[0].icon)
     )
 
@@ -31,6 +33,8 @@ class WeatherMapper(
         tempMax = city.main.tempMax,
         humidity = city.main.humidity,
         windDeg = windDegMapper.map(city.wind.deg),
+        windSpeed = city.wind.speed,
+        pressure = city.main.pressure,
         iconUrl = weatherIconUrlMapper.map(city.weather[0].icon)
     )
 }

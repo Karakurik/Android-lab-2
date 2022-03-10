@@ -12,5 +12,7 @@ data class Weather(
     val tempMax: Double,
     val humidity: Int,
     val windDeg: WindDeg,
+    val windSpeed: Double,
+    val pressure: Int,
     val iconUrl: String
 )

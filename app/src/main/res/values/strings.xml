@@ -5,4 +5,10 @@
     <string name="query_hint">Найти погоду в городе</string>
     <string name="max_temp_example">Max Temp: 05:05 PM</string>
     <string name="min_temp_example">Min Temp: 05:05 AM</string>
+    <string name="pressure">Давление</string>
+    <string name="humidity">Влажность</string>
+    <string name="wind_deg">Направление ветра</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="temp_max">Макс температура</string>
+    <string name="temp_min">Мин температура</string>
 </resources>
