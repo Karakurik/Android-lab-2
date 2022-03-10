@@ -1,8 +1,10 @@
 package ru.itis.karakurik.androidLab2.presentation.fragments.list
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 import ru.itis.karakurik.androidLab2.R
 import ru.itis.karakurik.androidLab2.databinding.FragmentSearchBinding
@@ -87,7 +90,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             if (ActivityCompat.checkSelfPermission(
                     it,
                     Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_DENIED
+                ) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                    it,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
             ) {
                 val permissions = arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -103,10 +110,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                         userLon = location.longitude
                         userLat = location.latitude
                         Timber.d("Location found")
-                        /*binding?.let { it ->
+                        binding?.let { it ->
                             Snackbar.make(it.root, "Местоположение найдено", Snackbar.LENGTH_LONG)
                                 .show()
-                        }*/
+                        }
                         getWeatherList(userLat, userLon, COUNT_OF_CITIES_IN_LIST)
                     } else {
                         Timber.d("Location not found")
@@ -115,8 +122,14 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                                 it.root,
                                 "Местоположение не найдено\nВключите геолокацию",
                                 Snackbar.LENGTH_LONG
-                            )
-                                .show()
+                            ).run {
+                                setAction("Включить местоположение") {
+                                    startActivity(
+                                        Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                                    )
+                                }
+                                show()
+                            }
                         }
                     }
                 }
