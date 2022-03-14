@@ -90,11 +90,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             if (ActivityCompat.checkSelfPermission(
                     it,
                     Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED &&
+                ) == PackageManager.PERMISSION_DENIED ||
                 ActivityCompat.checkSelfPermission(
                     it,
                     Manifest.permission.ACCESS_FINE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
+                ) == PackageManager.PERMISSION_DENIED
             ) {
                 val permissions = arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,
