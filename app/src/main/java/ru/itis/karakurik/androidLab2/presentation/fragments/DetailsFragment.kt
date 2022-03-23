@@ -68,6 +68,7 @@ class DetailsFragment : Fragment() {
     private fun setWeatherData(weather: Weather) {
         with(binding) {
             weather.run {
+                setWeather(weather)
                 tvCity.text = name
                 tvTemp.text = "${temp}°C"
                 tvTempMin.text = "${tempMin}°C"

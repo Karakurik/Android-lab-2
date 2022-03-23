@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_details">
 
         <argument
-            android:name="@string/city_id"
+            android:name="city_id"
             app:argType="integer" />
     </fragment>
 </navigation>
