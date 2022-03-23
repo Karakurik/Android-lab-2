@@ -10,7 +10,7 @@
     <string name="wind_speed">Скорость ветра</string>
     <string name="temp_max">Макс температура</string>
     <string name="temp_min">Мин температура</string>
-    <string name="transition_name">transaction_icon</string>
+    <string name="transition_name">transactionName</string>
     <string name="city_id">city_id</string>
     <string name="temp">Температура</string>
 </resources>

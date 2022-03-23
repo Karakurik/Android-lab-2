@@ -26,7 +26,10 @@ class ListItemViewHolder(
                     getColor(weather.temp)
                 )
             )
-            ivIconItem.load(weather.iconUrl)
+            ivIconItem.run {
+                load(weather.iconUrl)
+                transitionName = "Item_${weather.id}"
+            }
 
             root.setOnClickListener {
                 onItemClick(weather.id)

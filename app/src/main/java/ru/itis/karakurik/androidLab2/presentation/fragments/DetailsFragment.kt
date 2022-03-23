@@ -79,6 +79,10 @@ class DetailsFragment : Fragment() {
                 tvPressure.text = "${pressure}P"
                 ivAir.load(iconUrl)
 
+                arguments?.getString(R.string.transition_name.toString())?.let {
+                    ivAir.transitionName = it
+                }
+
                 tvTemp.setTextColor(
                     ContextCompat.getColor(
                         tvTemp.context,

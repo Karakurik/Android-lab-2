@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
+import ru.itis.karakurik.androidLab2.R
 import ru.itis.karakurik.androidLab2.databinding.FragmentSearchBinding
 import ru.itis.karakurik.androidLab2.di.DiContainer
 import ru.itis.karakurik.androidLab2.presentation.MainViewModel
@@ -242,7 +243,8 @@ class SearchFragment : Fragment() {
         id: Int,
     ) = findNavController().navigate(
         SearchFragmentDirections.actionFragmentSearchToFragmentDetails(
-            id
+            id,
+            "Item_$id"
         )
     )
 
