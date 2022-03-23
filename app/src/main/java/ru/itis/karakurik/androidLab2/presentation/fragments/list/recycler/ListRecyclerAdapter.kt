@@ -21,9 +21,4 @@ class ListRecyclerAdapter(
     ) = holder.bind(
         getItem(position)
     )
-
-    /*override fun submitList(list: MutableList<CityWeather>?) {
-        super.submitList(if (list == null) null else ArrayList(list))
-    }*/
-
 }

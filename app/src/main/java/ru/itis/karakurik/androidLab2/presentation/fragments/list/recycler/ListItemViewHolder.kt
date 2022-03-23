@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import ru.itis.karakurik.androidLab2.databinding.ListItemCityBinding
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.presentation.convertors.TempColorConverter.getColor
@@ -15,6 +16,7 @@ class ListItemViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(weather: Weather) {
+
         with(binding) {
             tvCityItem.text = weather.name
             tvTempItem.text = weather.temp.toString()
@@ -24,6 +26,7 @@ class ListItemViewHolder(
                     getColor(weather.temp)
                 )
             )
+            ivIconItem.load(weather.iconUrl)
 
             root.setOnClickListener {
                 onItemClick(weather.id)

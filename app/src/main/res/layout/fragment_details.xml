@@ -42,7 +42,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/font_bold"
         android:gravity="bottom"
-        android:text="Температура"
+        android:text="@string/temp"
         android:textColor="@color/black"
         android:textSize="28sp" />
 
@@ -53,7 +53,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="top"
-        android:text="29.99°C"
+        tools:text="29.99°C"
         android:textColor="@color/black"
         android:textSize="76sp" />
 

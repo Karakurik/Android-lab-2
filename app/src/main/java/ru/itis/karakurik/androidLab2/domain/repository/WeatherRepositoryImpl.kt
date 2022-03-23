@@ -1,5 +1,6 @@
 package ru.itis.karakurik.androidLab2.domain.repository
 
+import ru.itis.karakurik.androidLab2.BuildConfig
 import ru.itis.karakurik.androidLab2.data.api.Api
 import ru.itis.karakurik.androidLab2.data.api.mapper.WeatherMapper
 import ru.itis.karakurik.androidLab2.domain.entity.Weather

@@ -1,5 +1,6 @@
 package ru.itis.karakurik.androidLab2.di
 
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,6 +15,8 @@ import ru.itis.karakurik.androidLab2.di.interceptors.LangInterceptor
 import ru.itis.karakurik.androidLab2.di.interceptors.UnitsInterceptor
 import ru.itis.karakurik.androidLab2.domain.repository.WeatherRepository
 import ru.itis.karakurik.androidLab2.domain.repository.WeatherRepositoryImpl
+import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherListUseCase
+import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherUseCase
 
 private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
@@ -53,7 +56,7 @@ object DiContainer {
         WeatherIconUrlMapper()
     }
 
-    val weatherMapper: WeatherMapper by lazy {
+    private val weatherMapper: WeatherMapper by lazy {
         WeatherMapper(
             windDegMapper,
             weatherIconUrlMapper
@@ -65,5 +68,13 @@ object DiContainer {
             api,
             weatherMapper
         )
+    }
+
+    val getWeatherUseCase: GetWeatherUseCase by lazy {
+        GetWeatherUseCase(weatherRepository, Dispatchers.Default)
+    }
+
+    val getWeatherListUseCase: GetWeatherListUseCase by lazy {
+        GetWeatherListUseCase(weatherRepository, Dispatchers.Default)
     }
 }

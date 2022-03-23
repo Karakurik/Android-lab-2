@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.domain.repository.WeatherRepository
 
-class GetWeathersUseCase(
+class GetWeatherListUseCase(
     private val weatherRepository: WeatherRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) {
