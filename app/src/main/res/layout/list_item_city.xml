@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="32dp"
     android:layout_margin="8dp"
     android:backgroundTint="@color/weatherColor"
     android:translationZ="2dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    app:cardCornerRadius="32dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="30dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:id="@+id/iv_icon_item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:transitionName="@string/transition_name"
+            tools:src="@drawable/air" />
 
         <TextView
             android:id="@+id/tv_city_item"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
             android:layout_weight="1"
-            tools:text="Kazan"/>
+            android:textSize="32sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            tools:text="Kazan" />
 
         <TextView
             android:id="@+id/tv_temp_item"
@@ -31,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:textSize="32sp"
-            tools:textColor="#00ff00"
-            tools:text="10"/>
+            tools:text="10"
+            tools:textColor="#00ff00" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>

@@ -3,24 +3,22 @@ package ru.itis.karakurik.androidLab2.presentation.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import ru.itis.karakurik.androidLab2.R
 import ru.itis.karakurik.androidLab2.databinding.ActivityMainBinding
 import ru.itis.karakurik.androidLab2.extentions.findController
 
-class MainActivity : AppCompatActivity() {
-    private var binding: ActivityMainBinding? = null
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+    private val binding by viewBinding(ActivityMainBinding::bind)
     private var controller: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater).also {
-            setContentView(it.root)
-        }
-        controller = binding?.navHostFragmentMain?.id?.let { findController(it) }
+        controller = binding.navHostFragmentMain.id.let { findController(it) }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        binding = null
         controller = null
     }
 }

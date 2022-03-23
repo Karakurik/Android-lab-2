@@ -13,7 +13,8 @@
 
         <action
             android:id="@+id/action_fragment_search_to_fragment_details"
-            app:destination="@id/fragment_details" />
+            app:destination="@id/fragment_details">
+        </action>
     </fragment>
     <fragment
         android:id="@+id/fragment_details"
@@ -21,11 +22,12 @@
         android:label="fragment_details"
         tools:layout="@layout/fragment_details">
 
-        <action
-            android:id="@+id/action_fragment_details_to_fragment_search"
-            app:destination="@id/fragment_search" />
         <argument
             android:name="city_id"
             app:argType="integer" />
+
+        <argument
+            android:name="transitionName"
+            app:argType="string"/>
     </fragment>
 </navigation>
