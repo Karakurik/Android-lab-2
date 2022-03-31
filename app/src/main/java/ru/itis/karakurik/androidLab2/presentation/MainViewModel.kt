@@ -9,8 +9,9 @@ import kotlinx.coroutines.launch
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherListUseCase
 import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherUseCase
+import javax.inject.Inject
 
-class MainViewModel(
+class MainViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase,
     private val getWeatherListUseCase: GetWeatherListUseCase
 ) : ViewModel() {

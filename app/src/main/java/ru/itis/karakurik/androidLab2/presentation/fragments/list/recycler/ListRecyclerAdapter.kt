@@ -7,6 +7,7 @@ import ru.itis.karakurik.androidLab2.domain.entity.Weather
 class ListRecyclerAdapter(
     private val onItemClick: (id: Int) -> Unit
 ) : ListAdapter<Weather, ListItemViewHolder>(CityWeatherDiffCallback) {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

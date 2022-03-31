@@ -16,7 +16,6 @@ class ListItemViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(weather: Weather) {
-
         with(binding) {
             tvCityItem.text = weather.name
             tvTempItem.text = weather.temp.toString()
@@ -50,5 +49,4 @@ class ListItemViewHolder(
             onItemClick
         )
     }
-
 }

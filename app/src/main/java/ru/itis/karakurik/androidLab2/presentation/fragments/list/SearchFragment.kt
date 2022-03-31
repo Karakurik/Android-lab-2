@@ -13,25 +13,24 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
-import ru.itis.karakurik.androidLab2.R
+import dagger.Lazy
 import ru.itis.karakurik.androidLab2.databinding.FragmentSearchBinding
-import ru.itis.karakurik.androidLab2.di.DiContainer
 import ru.itis.karakurik.androidLab2.presentation.MainViewModel
 import ru.itis.karakurik.androidLab2.presentation.fragments.list.recycler.ListRecyclerAdapter
-import ru.itis.karakurik.androidLab2.presentation.utils.ViewModelFactory
+import ru.itis.karakurik.androidLab2.presentation.utils.AppViewModelFactory
 import timber.log.Timber
+import javax.inject.Inject
 
 private const val COUNT_OF_CITIES_IN_LIST = 20
 private const val DEFAULT_LAT = 55.7887
 private const val DEFAULT_LON = 49.1221
-private const val TRANSITION_NAME = "transition_name"
 
 class SearchFragment : Fragment() {
 
@@ -50,14 +49,11 @@ class SearchFragment : Fragment() {
     private var userLon: Double = DEFAULT_LON
     private var userLocation: FusedLocationProviderClient? = null
 
-    private val viewModel by lazy {
-        ViewModelProvider(
-            requireActivity(),
-            ViewModelFactory(
-                DiContainer.getWeatherUseCase,
-                DiContainer.getWeatherListUseCase
-            )
-        )[MainViewModel::class.java]
+    @Inject
+    lateinit var factory: AppViewModelFactory
+
+    private val viewModel: MainViewModel by viewModels {
+        factory
     }
 
     private val requestPermissions =

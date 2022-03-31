@@ -3,6 +3,7 @@ package ru.itis.karakurik.androidLab2.presentation.convertors
 import ru.itis.karakurik.androidLab2.R
 
 object TempColorConverter {
+
     fun getColor(temp: Double): Int {
         return when {
             temp < -20 -> R.color.temp_less_minus20
