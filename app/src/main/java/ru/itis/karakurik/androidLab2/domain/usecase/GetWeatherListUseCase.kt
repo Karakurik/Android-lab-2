@@ -7,7 +7,9 @@ import ru.itis.karakurik.androidLab2.di.module.AppModule
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.domain.repository.WeatherRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class GetWeatherListUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository,
     @AppModule.DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.Main

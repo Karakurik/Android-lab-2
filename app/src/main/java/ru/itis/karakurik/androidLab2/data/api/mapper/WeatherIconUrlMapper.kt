@@ -1,7 +1,9 @@
 package ru.itis.karakurik.androidLab2.data.api.mapper
 
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class WeatherIconUrlMapper @Inject constructor() {
 
     fun mapToLargeIcon(iconId: String): String {

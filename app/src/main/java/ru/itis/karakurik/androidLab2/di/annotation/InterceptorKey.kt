@@ -1,9 +1,6 @@
 package ru.itis.karakurik.androidLab2.di.annotation
 
-import androidx.lifecycle.ViewModel
 import dagger.MapKey
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import okhttp3.Interceptor
 import kotlin.reflect.KClass
 
