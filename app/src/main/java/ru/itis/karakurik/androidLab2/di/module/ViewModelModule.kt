@@ -6,8 +6,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.itis.karakurik.androidLab2.di.annotation.ViewModelKey
-import ru.itis.karakurik.androidLab2.presentation.fragments.cities.CityListViewModel
 import ru.itis.karakurik.androidLab2.presentation.common.utils.AppViewModelFactory
+import ru.itis.karakurik.androidLab2.presentation.fragments.cities.CityListViewModel
 import ru.itis.karakurik.androidLab2.presentation.fragments.weather.WeatherViewModel
 
 @Module

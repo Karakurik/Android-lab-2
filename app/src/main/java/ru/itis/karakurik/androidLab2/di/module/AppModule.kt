@@ -2,10 +2,8 @@ package ru.itis.karakurik.androidLab2.di.module
 
 import android.content.Context
 import androidx.recyclerview.widget.LinearSmoothScroller
-import androidx.recyclerview.widget.LinearSmoothScroller.SNAP_TO_START
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.LocationServices
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

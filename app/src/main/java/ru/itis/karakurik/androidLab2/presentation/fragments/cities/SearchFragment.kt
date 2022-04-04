@@ -16,10 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import ru.itis.karakurik.androidLab2.WeatherApp
 import ru.itis.karakurik.androidLab2.databinding.FragmentSearchBinding
@@ -171,8 +169,7 @@ class SearchFragment : Fragment() {
                 requestPermissions.launch(permissions)
             } else {
                 Timber.d("Get user location")
-//                userLocation = LocationServices.getFusedLocationProviderClient(requireContext())
-                userLocation?.lastLocation?.addOnSuccessListener { location ->
+                userLocation.lastLocation.addOnSuccessListener { location ->
                     if (location != null) {
                         userLon = location.longitude
                         userLat = location.latitude

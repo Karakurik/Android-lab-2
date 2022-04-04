@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import ru.itis.karakurik.androidLab2.WeatherApp
 import ru.itis.karakurik.androidLab2.R
+import ru.itis.karakurik.androidLab2.WeatherApp
 import ru.itis.karakurik.androidLab2.databinding.ActivityMainBinding
 import ru.itis.karakurik.androidLab2.extentions.findController
 

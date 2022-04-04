@@ -9,8 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.load
-import ru.itis.karakurik.androidLab2.WeatherApp
 import ru.itis.karakurik.androidLab2.R
+import ru.itis.karakurik.androidLab2.WeatherApp
 import ru.itis.karakurik.androidLab2.databinding.FragmentDetailsBinding
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.presentation.common.convertors.TempColorConverter

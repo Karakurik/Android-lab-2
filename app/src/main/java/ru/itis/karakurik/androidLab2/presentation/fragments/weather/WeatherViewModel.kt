@@ -11,11 +11,11 @@ import javax.inject.Inject
 
 class WeatherViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase
-): ViewModel() {
+) : ViewModel() {
     private var _weather: MutableLiveData<Result<Weather>> = MutableLiveData()
     val weather: LiveData<Result<Weather>> get() = _weather
 
-    fun onGetWeather(cityId : Int) {
+    fun onGetWeather(cityId: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
                 getWeatherUseCase(cityId)
