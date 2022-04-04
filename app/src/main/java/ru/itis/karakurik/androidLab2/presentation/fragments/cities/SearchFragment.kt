@@ -46,7 +46,6 @@ class SearchFragment : Fragment() {
     private var listRecyclerAdapter: ListRecyclerAdapter? = null
     private var userLat: Double = DEFAULT_LAT
     private var userLon: Double = DEFAULT_LON
-    private var userLocation: FusedLocationProviderClient? = null
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -54,6 +53,12 @@ class SearchFragment : Fragment() {
     private val viewModel: CityListViewModel by viewModels {
         factory
     }
+
+    @Inject
+    lateinit var smoothScroller: RecyclerView.SmoothScroller
+
+    @Inject
+    lateinit var userLocation: FusedLocationProviderClient
 
     private val requestPermissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
@@ -71,14 +76,6 @@ class SearchFragment : Fragment() {
                 ).show()
             }
         }
-
-    private val smoothScroller: RecyclerView.SmoothScroller by lazy {
-        object : LinearSmoothScroller(context) {
-            override fun getVerticalSnapPreference(): Int {
-                return SNAP_TO_START
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (activity?.application as WeatherApp).appComponent.inject(this)
@@ -174,7 +171,7 @@ class SearchFragment : Fragment() {
                 requestPermissions.launch(permissions)
             } else {
                 Timber.d("Get user location")
-                userLocation = LocationServices.getFusedLocationProviderClient(requireContext())
+//                userLocation = LocationServices.getFusedLocationProviderClient(requireContext())
                 userLocation?.lastLocation?.addOnSuccessListener { location ->
                     if (location != null) {
                         userLon = location.longitude

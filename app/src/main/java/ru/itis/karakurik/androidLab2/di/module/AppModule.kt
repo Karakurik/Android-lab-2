@@ -1,6 +1,11 @@
 package ru.itis.karakurik.androidLab2.di.module
 
 import android.content.Context
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.LinearSmoothScroller.SNAP_TO_START
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.location.LocationServices
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -38,6 +43,17 @@ class AppModule {
     @Retention(AnnotationRetention.RUNTIME)
     annotation class IODispatcher
 
-    //fused loc client
-    //мапперы не здесь
+    @Provides
+    fun provideSmoothScroller(
+        context: Context
+    ): RecyclerView.SmoothScroller = object : LinearSmoothScroller(context) {
+        override fun getVerticalSnapPreference(): Int {
+            return SNAP_TO_START
+        }
+    }
+
+    @Provides
+    fun provideFusedLocationProviderClient(
+        context: Context
+    ) = LocationServices.getFusedLocationProviderClient(context)
 }
