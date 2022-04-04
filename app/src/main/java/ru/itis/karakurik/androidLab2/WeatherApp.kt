@@ -3,10 +3,8 @@ package ru.itis.karakurik.androidLab2
 import android.app.Application
 import ru.itis.karakurik.androidLab2.di.AppComponent
 import ru.itis.karakurik.androidLab2.di.DaggerAppComponent
-import ru.itis.karakurik.androidLab2.di.module.AppModule
-import ru.itis.karakurik.androidLab2.di.module.NetModule
 
-class App : Application() {
+class WeatherApp : Application() {
 
     lateinit var appComponent: AppComponent
 

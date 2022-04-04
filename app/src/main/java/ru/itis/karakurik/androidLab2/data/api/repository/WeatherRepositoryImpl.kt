@@ -1,9 +1,9 @@
-package ru.itis.karakurik.androidLab2.domain.repository
+package ru.itis.karakurik.androidLab2.data.api.repository
 
-import ru.itis.karakurik.androidLab2.BuildConfig
 import ru.itis.karakurik.androidLab2.data.api.Api
 import ru.itis.karakurik.androidLab2.data.api.mapper.WeatherMapper
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
+import ru.itis.karakurik.androidLab2.domain.repository.WeatherRepository
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(

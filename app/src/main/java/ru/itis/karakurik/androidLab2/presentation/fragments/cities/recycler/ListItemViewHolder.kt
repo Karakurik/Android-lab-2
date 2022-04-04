@@ -1,14 +1,13 @@
-package ru.itis.karakurik.androidLab2.presentation.fragments.list.recycler;
+package ru.itis.karakurik.androidLab2.presentation.fragments.cities.recycler;
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.itis.karakurik.androidLab2.databinding.ListItemCityBinding
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
-import ru.itis.karakurik.androidLab2.presentation.convertors.TempColorConverter.getColor
+import ru.itis.karakurik.androidLab2.presentation.common.convertors.TempColorConverter.getColor
 
 class ListItemViewHolder(
     private val binding: ListItemCityBinding,

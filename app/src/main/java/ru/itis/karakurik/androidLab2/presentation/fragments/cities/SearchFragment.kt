@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2.presentation.fragments.list
+package ru.itis.karakurik.androidLab2.presentation.fragments.cities
 
 import android.Manifest.permission.*
 import android.content.Intent
@@ -14,17 +14,16 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
-import dagger.Lazy
+import ru.itis.karakurik.androidLab2.WeatherApp
 import ru.itis.karakurik.androidLab2.databinding.FragmentSearchBinding
-import ru.itis.karakurik.androidLab2.presentation.MainViewModel
-import ru.itis.karakurik.androidLab2.presentation.fragments.list.recycler.ListRecyclerAdapter
-import ru.itis.karakurik.androidLab2.presentation.utils.AppViewModelFactory
+import ru.itis.karakurik.androidLab2.presentation.fragments.cities.recycler.ListRecyclerAdapter
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -50,14 +49,14 @@ class SearchFragment : Fragment() {
     private var userLocation: FusedLocationProviderClient? = null
 
     @Inject
-    lateinit var factory: AppViewModelFactory
+    lateinit var factory: ViewModelProvider.Factory
 
-    private val viewModel: MainViewModel by viewModels {
+    private val viewModel: CityListViewModel by viewModels {
         factory
     }
 
     private val requestPermissions =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { it ->
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             var allPermissionsGranted = true
             for (granted in it.values) {
                 allPermissionsGranted = allPermissionsGranted and granted
@@ -79,6 +78,11 @@ class SearchFragment : Fragment() {
                 return SNAP_TO_START
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        (activity?.application as WeatherApp).appComponent.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -105,22 +109,20 @@ class SearchFragment : Fragment() {
 
     private fun initObservers() {
         with(viewModel) {
-            cityId.observe(viewLifecycleOwner) { event ->
-                event.getContentIfNotHandled()?.let { result ->
-                    result.fold(
-                        onSuccess = {
-                            showDetailsFragment(it)
-                        },
-                        onFailure = {
-                            Toast.makeText(
-                                context,
-                                "Не удалось найти такой город",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            Timber.d("Do not found city")
-                        }
-                    )
-                }
+            cityId.observe(viewLifecycleOwner) { result ->
+                result.fold(
+                    onSuccess = {
+                        showDetailsFragment(it)
+                    },
+                    onFailure = {
+                        Toast.makeText(
+                            context,
+                            "Не удалось найти такой город",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        Timber.d("Do not found city")
+                    }
+                )
             }
 
             weatherList.observe(viewLifecycleOwner) { result ->

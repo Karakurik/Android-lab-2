@@ -5,14 +5,14 @@ import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import ru.itis.karakurik.androidLab2.App
+import ru.itis.karakurik.androidLab2.WeatherApp
 import javax.inject.Qualifier
 
 @Module
 class AppModule {
 
     @Provides
-    fun provideContext(app: App): Context = app.applicationContext
+    fun provideContext(weatherApp: WeatherApp): Context = weatherApp.applicationContext
 
     @Provides
     @DefaultDispatcher

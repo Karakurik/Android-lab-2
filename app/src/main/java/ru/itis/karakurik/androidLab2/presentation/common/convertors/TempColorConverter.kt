@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2.presentation.convertors
+package ru.itis.karakurik.androidLab2.presentation.common.convertors
 
 import ru.itis.karakurik.androidLab2.R
 

@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2.presentation.fragments
+package ru.itis.karakurik.androidLab2.presentation.fragments.weather
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,12 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.load
+import ru.itis.karakurik.androidLab2.WeatherApp
 import ru.itis.karakurik.androidLab2.R
 import ru.itis.karakurik.androidLab2.databinding.FragmentDetailsBinding
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
-import ru.itis.karakurik.androidLab2.presentation.MainViewModel
-import ru.itis.karakurik.androidLab2.presentation.convertors.TempColorConverter
-import ru.itis.karakurik.androidLab2.presentation.utils.AppViewModelFactory
+import ru.itis.karakurik.androidLab2.presentation.common.convertors.TempColorConverter
+import ru.itis.karakurik.androidLab2.presentation.common.utils.AppViewModelFactory
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -25,8 +25,13 @@ class DetailsFragment : Fragment() {
     @Inject
     lateinit var factory: AppViewModelFactory
 
-    private val viewModel: MainViewModel by viewModels {
+    private val viewModel: WeatherViewModel by viewModels {
         factory
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        (activity?.application as WeatherApp).appComponent.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(

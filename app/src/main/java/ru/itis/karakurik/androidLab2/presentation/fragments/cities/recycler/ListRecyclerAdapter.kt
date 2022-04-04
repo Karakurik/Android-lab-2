@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2.presentation.fragments.list.recycler;
+package ru.itis.karakurik.androidLab2.presentation.fragments.cities.recycler;
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter

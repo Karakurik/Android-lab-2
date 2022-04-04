@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2.presentation.utils
+package ru.itis.karakurik.androidLab2.presentation.common.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
