@@ -72,13 +72,13 @@ class DetailsFragment : Fragment() {
             weather.run {
                 setWeather(weather)
                 tvCity.text = name
-                tvTemp.text = "${temp}°C"
-                tvTempMin.text = "${tempMin}°C"
-                tvTempMax.text = "${tempMax}°C"
+                tvTemp.text = getString(R.string.temp_with_symbol, temp)
+                tvTempMin.text = getString(R.string.temp_with_symbol, tempMin)
+                tvTempMax.text = getString(R.string.temp_with_symbol, tempMax)
                 tvWindDeg.text = windDeg.toString()
-                tvWindSpeed.text = "${windSpeed}km/h"
-                tvHumidity.text = "${humidity}%"
-                tvPressure.text = "${pressure}P"
+                tvWindSpeed.text = getString(R.string.wind_speed_with_symbol, windSpeed)
+                tvHumidity.text = getString(R.string.humidity_with_symbol, humidity)
+                tvPressure.text = getString(R.string.pressure_with_symbol, pressure)
                 ivAir.load(iconUrl)
 
                 arguments?.getString(R.string.transition_name.toString())?.let {

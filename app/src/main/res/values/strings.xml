@@ -13,4 +13,9 @@
     <string name="transition_name">transactionName</string>
     <string name="city_id">city_id</string>
     <string name="temp">Температура</string>
+
+    <string name="temp_with_symbol">%1$.2f°C</string>
+    <string name="wind_speed_with_symbol">%1$.2fkm/h</string>
+    <string name="humidity_with_symbol">%1$d%%</string>
+    <string name="pressure_with_symbol">%1$dP</string>
 </resources>
