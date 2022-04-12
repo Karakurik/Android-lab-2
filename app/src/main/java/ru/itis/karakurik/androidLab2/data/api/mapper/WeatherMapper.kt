@@ -12,7 +12,7 @@ class WeatherMapper @Inject constructor(
     private val weatherIconUrlMapper: WeatherIconUrlMapper
 ) {
 
-    fun map(weatherResponse: WeatherResponse) : Weather = Weather(
+    fun map(weatherResponse: WeatherResponse): Weather = Weather(
         id = weatherResponse.id,
         name = weatherResponse.name,
         lat = weatherResponse.coord.lat,
@@ -27,7 +27,7 @@ class WeatherMapper @Inject constructor(
         iconUrl = weatherIconUrlMapper.mapToLargeIcon(weatherResponse.weather[0].icon)
     )
 
-    fun map(city: City) : Weather = Weather(
+    fun map(city: City): Weather = Weather(
         id = city.id,
         name = city.name,
         lat = city.coord.lat,

@@ -1,13 +1,14 @@
 package ru.itis.karakurik.androidLab2.data.api.repository
 
+import dagger.hilt.components.SingletonComponent
+import it.czerwinski.android.hilt.annotations.BoundTo
 import ru.itis.karakurik.androidLab2.data.api.Api
 import ru.itis.karakurik.androidLab2.data.api.mapper.WeatherMapper
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.domain.repository.WeatherRepository
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@BoundTo(supertype = WeatherRepository::class, component = SingletonComponent::class)
 class WeatherRepositoryImpl @Inject constructor(
     private val api: Api,
     private val weatherMapper: WeatherMapper

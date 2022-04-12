@@ -2,6 +2,8 @@ package ru.itis.karakurik.androidLab2.di.module
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -10,10 +12,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.itis.karakurik.androidLab2.BuildConfig
 import ru.itis.karakurik.androidLab2.data.api.Api
-import ru.itis.karakurik.androidLab2.di.annotation.ApiKey
-import ru.itis.karakurik.androidLab2.di.annotation.Lang
-import ru.itis.karakurik.androidLab2.di.annotation.Logger
-import ru.itis.karakurik.androidLab2.di.annotation.Units
+import ru.itis.karakurik.androidLab2.di.qualifier.ApiKeyInterceptor
+import ru.itis.karakurik.androidLab2.di.qualifier.LangInterceptor
+import ru.itis.karakurik.androidLab2.di.qualifier.LoggingInterceptor
+import ru.itis.karakurik.androidLab2.di.qualifier.UnitsInterceptor
 import java.io.File
 import javax.inject.Qualifier
 
@@ -25,11 +27,12 @@ private const val LANG = "RU"
 private const val QUERY_UNITS = "units"
 private const val UNITS = "metric"
 
+@InstallIn(SingletonComponent::class)
 @Module
 class NetModule {
 
     @Provides
-    @ApiKey
+    @ApiKeyInterceptor
     fun apiKeyInterceptor(): Interceptor = Interceptor { chain ->
         val request = chain.request()
         val newUrl = request.url.newBuilder()
@@ -44,7 +47,7 @@ class NetModule {
     }
 
     @Provides
-    @Lang
+    @LangInterceptor
     fun langInterceptor(): Interceptor = Interceptor { chain ->
         val request = chain.request()
         val newUrl = request.url.newBuilder()
@@ -59,7 +62,7 @@ class NetModule {
     }
 
     @Provides
-    @Units
+    @UnitsInterceptor
     fun unitsInterceptor(): Interceptor = Interceptor { chain ->
         val request = chain.request()
         val newUrl = request.url.newBuilder()
@@ -74,7 +77,7 @@ class NetModule {
     }
 
     @Provides
-    @Logger
+    @LoggingInterceptor
     fun provideLoggingInterceptor(): Interceptor {
         return HttpLoggingInterceptor()
             .setLevel(
@@ -107,10 +110,10 @@ class NetModule {
     @Provides
     fun provideOkhttpClient(
         cache: Cache,
-        @ApiKey apiKeyInterceptor: Interceptor,
-        @Lang langInterceptor: Interceptor,
-        @Units unitsInterceptor: Interceptor,
-        @Logger loggingInterceptor: Interceptor,
+        @ApiKeyInterceptor apiKeyInterceptor: Interceptor,
+        @LangInterceptor langInterceptor: Interceptor,
+        @UnitsInterceptor unitsInterceptor: Interceptor,
+        @LoggingInterceptor loggingInterceptor: Interceptor,
     ): OkHttpClient =
         OkHttpClient.Builder()
             .cache(cache)
