@@ -1,9 +1,12 @@
 package ru.itis.karakurik.androidLab2.presentation.fragments.weather
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import dagger.Module
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
@@ -14,6 +17,24 @@ import javax.inject.Inject
 class WeatherViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase
 ) : ViewModel() {
+
+//    @AssistedFactory
+//    interface Factory {
+//        fun create(@Assisted cityId: Int): Factory
+//    }
+//
+//    @Suppress("UNCHECKED_CAST")
+//    companion object {
+//        fun provideFactory(
+//            assistedFactory: Factory,
+//            cityId: Int
+//        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//                return assistedFactory.create(cityId) as T
+//            }
+//        }
+//    }
+
     private var _weather: MutableLiveData<Result<Weather>> = MutableLiveData()
     val weather: LiveData<Result<Weather>> get() = _weather
 
@@ -29,3 +50,7 @@ class WeatherViewModel @Inject constructor(
         }
     }
 }
+
+//@Module
+//@InstallIn(ActivityRetainedComponent::class)
+//interface AssistedInjectModule
