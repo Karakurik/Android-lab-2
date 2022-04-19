@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherListUseCase
 import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherUseCase
+import ru.itis.karakurik.androidLab2.presentation.common.utils.SingleLiveEvent
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,7 +21,7 @@ class CityListViewModel @Inject constructor(
     private val _weatherList: MutableLiveData<Result<List<Weather>>> = MutableLiveData()
     val weatherList: LiveData<Result<List<Weather>>> = _weatherList
 
-    private val _cityId: MutableLiveData<Result<Int>> = MutableLiveData()
+    private val _cityId: SingleLiveEvent<Result<Int>> = SingleLiveEvent()
     val cityId: LiveData<Result<Int>> = _cityId
 
     fun onGetWeatherList(lat: Double, lon: Double, cnt: Int) {
