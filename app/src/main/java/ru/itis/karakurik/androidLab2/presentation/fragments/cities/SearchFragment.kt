@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -93,28 +94,13 @@ class SearchFragment : Fragment() {
     }
 
     private fun initObservers() {
-        with(viewModel) {
-            cityId.observe(viewLifecycleOwner) { result ->
-                result.fold(
-                    onSuccess = {
-                        showDetailsFragment(it)
-                    },
-                    onFailure = {
-                        Toast.makeText(
-                            context,
-                            "Не удалось найти такой город",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        Timber.d("Do not found city")
-                    }
-                )
-            }
-
-            weatherList.observe(viewLifecycleOwner) { result ->
+        lifecycleScope.launchWhenStarted {
+            viewModel.weatherList.collect { result ->
                 result.fold(
                     onSuccess = {
                         listRecyclerAdapter?.submitList(it)
                         scrollRecyclerViewToPosition(0)
+                        binding.swipeRefreshLayout.isRefreshing = false
                     },
                     onFailure = {
                         Timber.e("Error due to get weathers")
@@ -128,6 +114,24 @@ class SearchFragment : Fragment() {
                 )
             }
         }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.cityId.collect { result ->
+                result?.fold(
+                    onSuccess = {
+                        showDetailsFragment(it)
+                    },
+                    onFailure = {
+                        Toast.makeText(
+                            context,
+                            "Не удалось найти такой город",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        Timber.d("Do not found city")
+                    }
+                )
+            }
+        }
     }
 
     private fun initSwipeRefreshList() {
@@ -135,7 +139,6 @@ class SearchFragment : Fragment() {
             it.setOnRefreshListener {
                 getUserLocation()
                 updateWeatherList(userLat, userLon, COUNT_OF_CITIES_IN_LIST)
-                it.isRefreshing = false
             }
         }
     }

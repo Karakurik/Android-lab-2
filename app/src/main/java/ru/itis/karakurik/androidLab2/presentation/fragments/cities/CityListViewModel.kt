@@ -1,15 +1,14 @@
 package ru.itis.karakurik.androidLab2.presentation.fragments.cities
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherListUseCase
 import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherUseCase
-import ru.itis.karakurik.androidLab2.presentation.common.utils.SingleLiveEvent
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,20 +17,23 @@ class CityListViewModel @Inject constructor(
     private val getWeatherListUseCase: GetWeatherListUseCase
 ) : ViewModel() {
 
-    private val _weatherList: MutableLiveData<Result<List<Weather>>> = MutableLiveData()
-    val weatherList: LiveData<Result<List<Weather>>> = _weatherList
+    private val _weatherList: MutableSharedFlow<Result<List<Weather>>> = MutableSharedFlow(
+        replay = 0,
+        extraBufferCapacity = 0
+    )
+    val weatherList: SharedFlow<Result<List<Weather>>> = _weatherList.asSharedFlow()
 
-    private val _cityId: SingleLiveEvent<Result<Int>> = SingleLiveEvent()
-    val cityId: LiveData<Result<Int>> = _cityId
+    private val _cityId: MutableStateFlow<Result<Int>?> = MutableStateFlow(null)
+    val cityId: StateFlow<Result<Int>?> = _cityId.asStateFlow()
 
     fun onGetWeatherList(lat: Double, lon: Double, cnt: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
                 getWeatherListUseCase(lat, lon, cnt)
             }.onSuccess {
-                _weatherList.value = Result.success(it)
+                _weatherList.emit(Result.success(it))
             }.onFailure {
-                _weatherList.value = Result.failure(it)
+                _weatherList.emit(Result.failure(it))
             }
         }
     }

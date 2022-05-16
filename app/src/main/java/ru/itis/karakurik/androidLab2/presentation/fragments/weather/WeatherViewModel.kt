@@ -8,6 +8,9 @@ import dagger.assisted.AssistedInject
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
 import ru.itis.karakurik.androidLab2.domain.usecase.GetWeatherUseCase
@@ -18,25 +21,8 @@ class WeatherViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase
 ) : ViewModel() {
 
-//    @AssistedFactory
-//    interface Factory {
-//        fun create(@Assisted cityId: Int): Factory
-//    }
-//
-//    @Suppress("UNCHECKED_CAST")
-//    companion object {
-//        fun provideFactory(
-//            assistedFactory: Factory,
-//            cityId: Int
-//        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//                return assistedFactory.create(cityId) as T
-//            }
-//        }
-//    }
-
-    private var _weather: MutableLiveData<Result<Weather>> = MutableLiveData()
-    val weather: LiveData<Result<Weather>> get() = _weather
+    private var _weather: MutableStateFlow<Result<Weather>?> = MutableStateFlow(null)
+    val weather: StateFlow<Result<Weather>?> = _weather.asStateFlow()
 
     fun onGetWeather(cityId: Int) {
         viewModelScope.launch {
@@ -50,7 +36,3 @@ class WeatherViewModel @Inject constructor(
         }
     }
 }
-
-//@Module
-//@InstallIn(ActivityRetainedComponent::class)
-//interface AssistedInjectModule
