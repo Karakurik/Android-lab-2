@@ -6,6 +6,7 @@ import ru.itis.karakurik.androidLab2.data.api.response.citiesResponse.CitiesResp
 import ru.itis.karakurik.androidLab2.data.api.response.weatherResponse.WeatherResponse
 
 interface Api {
+
     @GET("weather")
     suspend fun getWeather(@Query("q") city: String): WeatherResponse
 

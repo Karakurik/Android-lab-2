@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_search"
-        android:name="ru.itis.karakurik.androidLab2.presentation.fragments.list.SearchFragment"
+        android:name="ru.itis.karakurik.androidLab2.presentation.fragments.cities.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
 
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_details"
-        android:name="ru.itis.karakurik.androidLab2.presentation.fragments.DetailsFragment"
+        android:name="ru.itis.karakurik.androidLab2.presentation.fragments.weather.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details">
 

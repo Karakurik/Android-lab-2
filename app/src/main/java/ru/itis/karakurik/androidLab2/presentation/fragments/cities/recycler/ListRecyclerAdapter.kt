@@ -1,4 +1,4 @@
-package ru.itis.karakurik.androidLab2.presentation.fragments.list.recycler;
+package ru.itis.karakurik.androidLab2.presentation.fragments.cities.recycler;
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -7,6 +7,7 @@ import ru.itis.karakurik.androidLab2.domain.entity.Weather
 class ListRecyclerAdapter(
     private val onItemClick: (id: Int) -> Unit
 ) : ListAdapter<Weather, ListItemViewHolder>(CityWeatherDiffCallback) {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

@@ -3,11 +3,15 @@ package ru.itis.karakurik.androidLab2.data.api.mapper
 import ru.itis.karakurik.androidLab2.data.api.response.citiesResponse.City
 import ru.itis.karakurik.androidLab2.data.api.response.weatherResponse.WeatherResponse
 import ru.itis.karakurik.androidLab2.domain.entity.Weather
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class WeatherMapper(
+@Singleton
+class WeatherMapper @Inject constructor(
     private val windDegMapper: WindDegMapper,
     private val weatherIconUrlMapper: WeatherIconUrlMapper
 ) {
+
     fun map(weatherResponse: WeatherResponse) : Weather = Weather(
         id = weatherResponse.id,
         name = weatherResponse.name,
