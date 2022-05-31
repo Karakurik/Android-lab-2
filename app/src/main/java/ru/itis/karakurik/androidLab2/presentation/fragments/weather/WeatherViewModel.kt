@@ -18,23 +18,6 @@ class WeatherViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase
 ) : ViewModel() {
 
-//    @AssistedFactory
-//    interface Factory {
-//        fun create(@Assisted cityId: Int): Factory
-//    }
-//
-//    @Suppress("UNCHECKED_CAST")
-//    companion object {
-//        fun provideFactory(
-//            assistedFactory: Factory,
-//            cityId: Int
-//        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//                return assistedFactory.create(cityId) as T
-//            }
-//        }
-//    }
-
     private var _weather: MutableLiveData<Result<Weather>> = MutableLiveData()
     val weather: LiveData<Result<Weather>> get() = _weather
 
@@ -50,7 +33,3 @@ class WeatherViewModel @Inject constructor(
         }
     }
 }
-
-//@Module
-//@InstallIn(ActivityRetainedComponent::class)
-//interface AssistedInjectModule
