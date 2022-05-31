@@ -81,6 +81,7 @@ dependencies {
     def coroutines = "1.6.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines"
 
     // region Network
     def retrofit = "2.9.0"
@@ -104,8 +105,13 @@ dependencies {
     implementation "it.czerwinski.android.hilt:hilt-extensions:${hiltExt}"
     kapt "it.czerwinski.android.hilt:hilt-processor:${hiltExt}"
 
-
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'io.mockk:mockk:1.12.3'
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.8.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:1.6.21"
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
